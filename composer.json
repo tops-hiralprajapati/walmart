@@ -60,5 +60,6 @@
     },
     "autoload-dev": {
         "psr-4": { "Walmart\\Test\\" : "test/" }
-    }
+    },
+    "minimum-stability": "dev"
 }

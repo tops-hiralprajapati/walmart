@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * Walmart
+ * PHP version 7.4
+ *
+ * @category Class
+ * @package  {{invokerPackage}}
+ * @author   Jesse Evers
+ * @link     https://highsidelabs.co
+ */
+
+{{>partials/partial_header}}
+
+namespace {{invokerPackage}};
+
+use BadMethodCallException;
+use RuntimeException;
+use {{apiPackage}}\CP\ContentProviderApi;
+use {{apiPackage}}\MP\MarketplaceApi;
+use {{apiPackage}}\Supplier\SupplierApi;
+use {{invokerPackage}}\Configuration;
+
+abstract class Walmart
+{
+    public const VERSION = '{{artifactVersion}}';
+
+    /**
+     * The base URL for all API requests. This can be overridden in child classes.
+     */
+    public const HOST = 'https://marketplace.walmartapis.com';
+
+    /**
+     * The configuration for this client.
+     * @var Configuration
+     */
+    protected Configuration $config;
+
+    /**
+     * The country to API class map. This should be overwritten by every child class.
+     * @var array<string, string[]>
+     */
+    protected static array $countryApiMap;
+
+    /**
+     * Create a new Walmart client.
+     *
+     * @param Configuration $config The configuration for this client.
+     * @param bool $clone If false, the configuration object will be used as-is. If true, the
+     *                    configuration object will be cloned before use. Default is true.
+     */
+    public function __construct(Configuration $config, protected bool $clone = true)
+    {
+        // We clone $config so that if the same Configuration object is used for multiple API
+        // instances, the host changes made in the ::contentProvider(), ::marketplace(), and
+        // ::supplier() methods don't affect the other API instances.
+        if ($this->clone) {
+            $this->config = clone $config;
+        } else {
+            $this->config = $config;
+        }
+
+        $config->setHost(static::HOST);
+    }
+
+    /**
+     * Return an instance of the Content Provider API provider.
+     *
+     * @param Configuration $config
+     * @param bool $clone
+     * @return ContentProviderApi
+     */
+    public static function contentProvider(Configuration $config, bool $clone = true): ContentProviderApi
+    {
+        return new ContentProviderApi($config, $clone);
+    }
+
+    /**
+     * Return an instance of the Marketplace API provider.
+     *
+     * @param Configuration $config
+     * @param bool $clone
+     * @return MarketplaceApi
+     */
+    public static function marketplace(Configuration $config, bool $clone = true): MarketplaceApi
+    {
+        return new MarketplaceApi($config, $clone);
+    }
+
+    /**
+     * Return an instance of the 1P Supplier API provider.
+     *
+     * @param Configuration $config
+     * @param bool $clone
+     * @return SupplierApi
+     */
+    public static function supplier(Configuration $config, bool $clone = true): SupplierApi
+    {
+        return new SupplierApi($config, $clone);
+    }
+
+    /**
+     * Enable calling country-specific APIs as single methods on this class, without needing to
+     * specify the country outside $this->config or manually instantiate the API class.
+     *
+     * @param mixed $name The name of the method being called.
+     * @param mixed $arguments The arguments passed to the callee.
+     * @throws BadMethodCallException
+     * @throws RuntimeException
+     * @return mixed 
+     */
+    public function __call($name, $arguments)
+    {
+        // Don't override existing methods
+        if (method_exists(get_class($this), $name)) {
+            return $this->$name(...$arguments);
+        }
+
+        if (!array_key_exists($name, static::$countryApiMap)) {
+            throw new BadMethodCallException("Method $name does not exist");
+        }
+
+        if (!array_key_exists($this->config->getCountry(), static::$countryApiMap[$name])) {
+            $supportedCountriesStr = implode(', ', array_keys(static::$countryApiMap[$name]));
+            throw new RuntimeException(
+                "$name API is not supported in country {$this->config->getCountry()}. Supported country(ies): $supportedCountriesStr"
+            );
+        }
+
+        $apiClass = static::$countryApiMap[$name][$this->config->getCountry()];
+        return new $apiClass($this->config);
+    }
+}

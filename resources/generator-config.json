@@ -1,0 +1,35 @@
+{
+  "artifactVersion": "0.7.0",
+
+  "disallowAdditionalPropertiesIfNotPresent": false,
+  "variableNamingConvention": "camelCase",
+
+  "gitUserId": "highsidelabs",
+  "gitRepoId": "walmart-api-php",
+
+  "packagePath": "generated",
+  "srcBasePath": "src",
+
+  "invokerPackage": "Walmart",
+
+  "files": {
+    "Walmart.hbs": {
+      "folder": "src",
+      "destinationFilename": "Walmart.php",
+      "templateType": "SupportingFiles"
+    },
+    "BaseApi.hbs": {
+      "folder": "src/Apis",
+      "destinationFilename": "BaseApi.php",
+      "templateType": "SupportingFiles"
+    },
+    "ModelInterface.hbs": {
+      "folder": "src/Models",
+      "destinationFilename": "ModelInterface.php"
+    },
+    "BaseModel.hbs": {
+      "folder": "src/Models",
+      "destinationFilename": "BaseModel.php"
+    }
+  }
+}

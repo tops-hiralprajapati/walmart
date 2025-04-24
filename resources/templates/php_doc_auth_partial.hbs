@@ -1,0 +1,10 @@
+{{#if hasAuthMethods ~}}
+$config = new {{invokerPackage}}\Configuration([
+    'clientId' => 'CLIENT_ID',          // May not be necessary for all endpoints, particularly outside the US
+    'clientSecret' => 'CLIENT_SECRET',  // Ditto above
+    'country' => Country::{{x-walmart-country}},           // Default Country::US if not set{{#each authMethods ~}}{{#if isApiKey}}{{#if @first}}
+    'privateKey' => 'PRIVATE_KEY',
+    'consumerId' => 'CONSUMER_ID',{{/if}}{{/if}}{{/each}}
+]);
+
+{{/if}}

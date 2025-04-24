@@ -1,0 +1,39 @@
+<?php
+
+{{#models~}}
+{{#model~}}
+/**
+ * {{classname}}
+ *
+ * PHP version 7.4
+ *
+ * @category Class
+ * @package  {{invokerPackage}}
+ * @author   Jesse Evers
+ * @link     https://highsidelabs.co
+ * @email    jesse@highsidelabs.co
+ */
+
+{{>partials/partial_header}}
+
+namespace {{modelPackage}};
+
+{{#unless isEnum~}}
+use {{invokerPackage}}\Models\BaseModel;
+{{~#if vendorExtensions.x-expose-headers}}
+use Walmart\Traits\HasResponseHeaders;
+{{/if}}
+{{/unless}}
+/**
+ * {{classname}} Class Doc Comment
+ *
+ * @category Class
+{{#if description}}
+ * @description {{{description}}}
+{{/if}}
+ * @package  {{invokerPackage}}
+ * @author   Jesse Evers
+ * @link     https://highsidelabs.co
+ * @email    jesse@highsidelabs.co
+ */
+{{#if isEnum}}{{>model_enum}}{{else}}{{>model_generic}}{{/if}}{{/model}}{{/models}}

@@ -1,0 +1,170 @@
+{
+  "cp": {
+    "name": "Content Providers",
+    "code": "cp",
+    "apis": {
+      "feeds": {
+        "name": "Feeds",
+        "code": "feeds",
+        "countries": ["us"]
+      }
+    }
+  },
+  "mp": {
+    "name": "Marketplace Partners",
+    "code": "mp",
+    "apis": {
+      "assortmentrecommendations": {
+        "name": "Assortment Recommendations",
+        "code": "assortmentrecommendations",
+        "countries": ["us"]
+      },
+      "auth": {
+        "name": "Authentication",
+        "code": "auth",
+        "countries": ["mx", "us"]
+      },
+      "events": {
+        "name": "Events",
+        "code": "events",
+        "countries": ["ca"]
+      },
+      "feeds": {
+        "name": "Feeds",
+        "code": "feeds",
+        "countries": ["ca", "mx", "us"]
+      },
+      "fulfillment": {
+        "name": "Fulfillment",
+        "code": "fulfillment",
+        "countries": ["us"]
+      },
+      "insights": {
+        "name": "Insights",
+        "code": "insights",
+        "countries": ["us"]
+      },
+      "cbt": {
+        "name": "International Shipping",
+        "code": "cbt",
+        "countries": ["ca"]
+      },
+      "inventory": {
+        "name": "Inventory",
+        "code": "inventory",
+        "countries": ["ca", "mx", "us"]
+      },
+      "items": {
+        "name": "Items",
+        "code": "items",
+        "countries": ["ca", "mx", "us"]
+      },
+      "lagtime": {
+        "name": "Lag Time",
+        "code": "lagtime",
+        "countries": ["us"]
+      },
+      "notifications": {
+        "name": "Notifications",
+        "code": "notifications",
+        "countries": ["us"]
+      },
+      "onrequestreports": {
+        "name": "On Request Reports",
+        "code": "onrequestreports",
+        "countries": ["us"]
+      },
+      "orders": {
+        "name": "Orders",
+        "code": "orders",
+        "countries": ["ca", "mx", "us"]
+      },
+      "price": {
+        "name": "Prices",
+        "code": "price",
+        "countries": ["ca", "mx", "us"]
+      },
+      "promotion": {
+        "name": "Promotions",
+        "code": "promotion",
+        "countries": ["ca", "us"]
+      },
+      "reports": {
+        "name": "Reports",
+        "code": "reports",
+        "countries": ["ca", "us", "mx"]
+      },
+      "returns": {
+        "name": "Returns",
+        "code": "returns",
+        "countries": ["us", "mx"]
+      },
+      "reviews": {
+        "name": "Reviews",
+        "code": "reviews",
+        "countries": ["us"]
+      },
+      "rules": {
+        "name": "Rules",
+        "code": "rules",
+        "countries": ["us"]
+      },
+      "settings": {
+        "name": "Settings",
+        "code": "settings",
+        "countries": ["us"]
+      },
+      "sww": {
+        "name": "International Shipping",
+        "code": "sww",
+        "countries": ["mx"]
+      },
+      "utilities": {
+        "name": "Utilities",
+        "code": "utilities",
+        "countries": ["us"]
+      }
+    }
+  },
+  "supplier": {
+    "name": "1P Suppliers",
+    "code": "supplier",
+    "apis": {
+      "cost": {
+        "name": "DSV Cost",
+        "code": "cost",
+        "countries": ["us"]
+      },
+      "feeds": {
+        "name": "Feeds",
+        "code": "feeds",
+        "countries": ["us"]
+      },
+      "inventory": {
+        "name": "DSV Inventory",
+        "code": "inventory",
+        "countries": ["us"]
+      },
+      "items": {
+        "name": "Items",
+        "code": "items",
+        "countries": ["us"]
+      },
+      "lagtime": {
+        "name": "DSV Lag Time",
+        "code": "lagtime",
+        "countries": ["us"]
+      },
+      "orders": {
+        "name": "DSV Orders",
+        "code": "orders",
+        "countries": ["us"]
+      },
+      "reports": {
+        "name": "Reports",
+        "code": "reports",
+        "countries": ["us"]
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+/vendor/
+resources/specs
+
+composer.lock
+
+# Log files
+**/*.log
+
+# OpenAPI cache
+.openapi-generator/
+
+# PHP CS Fixer cache
+.php-cs-fixer.cache
+
+# PHPUnit cache
+.phpunit.result.cache
+
+# IDE
+.vscode
+.idea/
+
+# OS X
+**/.DS_Store
